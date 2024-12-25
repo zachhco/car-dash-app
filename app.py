@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
@@ -6,6 +7,7 @@ import numpy as np
 import os
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 # Initialize and train the model
 def init_model():
