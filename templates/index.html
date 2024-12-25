@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Prediction Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Death Prediction Dashboard</h1>
+        <p class="description">
+            This dashboard showcases a prototype idea for a car display that broadcasts an active reading of a
+            driver's probability of death in a car accident. The dashboard is trained on a robust random forest model,
+            which takes data input for factors such as speed and road conditions.
+        </p>
+
+        <div class="input-sections">
+            <div class="section">
+                <h2>Driving Conditions</h2>
+                <div class="input-group">
+                    <label for="restraint_use">Restraint Use:</label>
+                    <select id="restraint_use">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="speeding">Speeding:</label>
+                    <select id="speeding">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="rush_hour">Rush Hour:</label>
+                    <select id="rush_hour">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="light_condition">Light Condition:</label>
+                    <select id="light_condition">
+                        <option value="Daylight">Daylight</option>
+                        <option value="Night">Night</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="cold_weather">Cold Weather:</label>
+                    <select id="cold_weather">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Additional Features</h2>
+                <div class="input-group">
+                    <label for="airbag_deploy">Airbag Deploy:</label>
+                    <select id="airbag_deploy">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="ejection">Ejection:</label>
+                    <select id="ejection">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="collision">Collision:</label>
+                    <select id="collision">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="alcohol_use">Alcohol Use:</label>
+                    <select id="alcohol_use">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="drug_use">Drug Use:</label>
+                    <select id="drug_use">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Driver Information</h2>
+                <div class="input-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" value="39" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="sex">Sex:</label>
+                    <select id="sex">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="height">Height (inches):</label>
+                    <input type="number" id="height" value="68" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="weight">Weight (lbs):</label>
+                    <input type="number" id="weight" value="184" min="0">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Vehicle Information</h2>
+                <div class="input-group">
+                    <label for="speed_limit">Speed Limit:</label>
+                    <input type="number" id="speed_limit" value="50" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="model_year">Model Year:</label>
+                    <input type="number" id="model_year" value="2008" min="1900">
+                </div>
+                <div class="input-group">
+                    <label for="license_status">License Status:</label>
+                    <select id="license_status">
+                        <option value="Valid">Valid</option>
+                        <option value="Invalid">Invalid</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="driver">Driver:</label>
+                    <select id="driver">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="front_seat">Front Seat:</label>
+                    <select id="front_seat">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="large_size">Large Size:</label>
+                    <select id="large_size">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <button id="predict-button" class="predict-button">Predict</button>
+
+        <div id="result" class="result">
+            <div class="dashboard">
+                <img id="dashboard-image" src="{{ url_for('static', filename='images/green.png') }}" alt="Dashboard">
+                <div id="probability" class="probability"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
